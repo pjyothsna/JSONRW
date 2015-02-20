@@ -21,7 +21,24 @@ Use case 1: getting input json from class path
 
 Usecase 2: setting system variables java -D  
   java -D'name.json'='Path of the JSON' -jar 'Path of the jar file' 'package.classname' 'name.json' 2
-  
 
-Note: log4j.properities need to modify to set up the log path
+Expected Input:
+{"memesMap":{"A":"helloA","C":"Hello C","B":"Hello B"}}
+Expected Output
+  1. File Path = C:\user\git\memes\src\main\resources\memes.json
+  2. Memes Json read {{A=helloA, C=Hello C, B=Hello B}}
+  3. Sorted Keys [A, B, C]
+  4. 
+    lulz score: memeName = A and lulzScore= -8
+    lulz score: memeName = C and lulzScore= -6
+    lulz score: memeName = B and lulzScore= -7
+
+  5. final output: 
+    {"lulzMap":{"A":-8,"B":-7,"C":-6},"memesMap":{"A":"helloA","C":"Hello C","B":"Hello B"}}
+
+  Here we are assuming that input file will be used by other systems hence existing structure should not be changed
+  to minimize the regression issues. So we have appended/prepended with new json object. so that exisiting jsonobject.get("memes") won't fail.
+
+
+Note: log4j.properities need to modify to set up the log path and Unit test cases needs to be added
  
