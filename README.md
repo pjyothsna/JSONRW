@@ -23,8 +23,11 @@ Usecase 2: setting system variables java -D
   java -D'name.json'='Path of the JSON' -jar 'Path of the jar file' 'package.classname' 'name.json' 2
 
 Expected Input:
+
 {"memesMap":{"A":"helloA","C":"Hello C","B":"Hello B"}}
-Expected Output
+
+Expected Output:
+  
   1. File Path = C:\user\git\memes\src\main\resources\memes.json
   2. Memes Json read {{A=helloA, C=Hello C, B=Hello B}}
   3. Sorted Keys [A, B, C]
