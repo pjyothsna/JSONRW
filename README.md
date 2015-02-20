@@ -17,10 +17,10 @@ Solution:
 
 Use case 1: getting input json from class path
   1. Copy the sample memes.json into classes direcotry
-  2. java -jar <Path of the jar file> <package.classname> <name.json> 1
+  2. java -jar 'Path of the jar file' 'package.classname' 'name.json' 1
 
 Usecase 2: setting system variables java -D  
-  java -D<name.json>=<Path of the JSON> -jar <Path of the jar file> <package.classname> <name.json> 2
+  java -D'name.json'='Path of the JSON' -jar 'Path of the jar file' 'package.classname' 'name.json' 2
   
 
 Note: log4j.properities need to modify to set up the log path
