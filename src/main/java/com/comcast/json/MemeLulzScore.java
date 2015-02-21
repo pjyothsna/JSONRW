@@ -28,7 +28,7 @@ public class MemeLulzScore {
 	/*
 	 * Getting abs path from class path file
 	 */
-	private String getAbsPath(String fileName) throws URISyntaxException {
+	public String getAbsPath(String fileName) throws URISyntaxException {
 
 		URL url = this.getClass().getClassLoader().getResource(fileName);
 		if (url == null) {
@@ -46,14 +46,29 @@ public class MemeLulzScore {
 	/*
 	 * Getting path from system variable 
 	 */
-	private String getAbsPathFromSysParam(String fileName) {
+	public String getAbsPathFromSysParam(String fileName) {
 
 		String filePath = System.getProperty(fileName);
 		log.info("File Path = " + filePath);
 
 		return filePath;
 	}
+	
+	public boolean checkFileSize(String filePath) {
+		File file =new File(filePath);
+		 
+		if(file.exists()){
+			if ( file.length()>0){ 
+				return true;
+			}	else{
+					return false;
+				}
+			}
+		return false;
+			
+	}
 
+	
 	/*
 	 * Reading JSON file and convert into Java Object and get the map out of java object
 	 */
@@ -66,8 +81,8 @@ public class MemeLulzScore {
 		try {
 			meme = mapper.readValue(new File(fileName), Memes.class);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			log.info(e.getMessage());
 		}
 		log.info("Memes Json read " + meme.toString());
 
@@ -89,7 +104,7 @@ public class MemeLulzScore {
 			mapper.writeValue(new File(fileName), memelulz);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage());
 		}
 
 	}
@@ -160,7 +175,7 @@ public class MemeLulzScore {
 			try {
 				memeMap = memeProcessor.readMemeJsonFromFile(fileAbsPath);
 			} catch (URISyntaxException e) {
-				log.error(e.getStackTrace());
+				log.error(e.getMessage());
 			}
 
 			/*
